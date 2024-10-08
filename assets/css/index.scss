@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Graphik Trial'; /* Name you want to give to the font */
+    src: url('../fonts/Graphik-Semibold-Trial.otf') format('opentype'); /* Path to the OTF file */
+    font-weight: 500; /* Normal font weight */
+    font-style: normal; /* Normal font style */
+}
+
+@font-face {
+    font-family: 'Graphik Trial'; /* Name you want to give to the font */
+    src: url('../fonts/Graphik-Medium-Trial.otf') format('opentype'); /* Path to the OTF file */
+    font-weight: 600; /* Normal font weight */
+    font-style: normal; /* Normal font style */
+}
+
+
+$mobile: 480px;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Graphik Trial';
+}
+.container{
+    max-width: 100%;
+    margin: auto;
+    padding: 40px;
+}
+.bg{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    .container{
+        display: flex;
+        justify-content: space-between;
+        .middle{
+            img{
+                width: 190px;
+            }
+        }
+
+        .right{
+
+            button{
+                background: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+            svg{
+                width: 30px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+#hero{
+    height: 100vh;
+
+    @media(max-width: $mobile){
+        height: calc(100vh - 100px);
+    }
+
+    .container{
+        display: flex;
+        height: 100%;
+        align-items: end;
+        justify-content: end;
+    }
+
+    .text{
+        text-align: right;
+        margin-right: 20px;
+
+        @media(max-width: $mobile){
+            margin-right: 0;
+        }
+
+        a{
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+            padding: 4px 40px 9px 40px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 400;
+            background: white;
+            background: linear-gradient(94deg, rgba(236, 78, 86, 0.60) 0%, rgba(171, 30, 112, 0.60) 100%);
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        }
+    }
+
+    h1{
+        font-size : 40px;
+        letter-spacing : 0.38px;
+        color : #FAF8F8;
+        font-weight: 600;
+        margin-bottom: 60px;
+
+        @media(max-width: $mobile){
+            font-size : 30px;
+        }
+    }
+
+    .brand{
+        color: #255B7C;
+        font-weight: 500;
+    }
+}
