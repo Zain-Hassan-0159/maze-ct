@@ -1,18 +1,17 @@
 const swiper = new Swiper('.swiper', {
   // Optional parameters
-  direction: 'horizontal',
-  slidesPerView: 1.5,
+  effect: "coverflow",
+  grabCursor: true,
   centeredSlides: true,
   loop: true,
-
-  // Add space between slides
-  spaceBetween: 20, // Adjust the value (in pixels) to set the desired gap
-
-  // Smooth transition (animation)
-  speed: 800, // Smooth transition speed
-
-  // Enable grabbing cursor for a better UX
-  grabCursor: true,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 0,
+    stretch: 0,
+    depth: 150,
+    modifier: 2.5,
+    slideShadows: false,
+  },
 
   // If we need pagination
   pagination: {
@@ -25,13 +24,53 @@ const swiper = new Swiper('.swiper', {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
+
+  // Responsive breakpoints
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+    },
+    // when window width is >= 1024px
+    1024: {
+      slidesPerView: "auto", 
+    },
+  }
 });
 
 
-  document.querySelector('.btn_menu').addEventListener("click", () =>{
+
+  document.querySelector('.btn_menu').addEventListener("click", (e) =>{
+    e.preventDefault();
     document.querySelector('#menu').classList.add("show")
   })
 
-  document.querySelector('.close a').addEventListener("click", () =>{
+  document.querySelector('.close a').addEventListener("click", (e) =>{
+    e.preventDefault();
     document.querySelector('#menu').classList.remove("show")
   })
+
+
+  document.querySelectorAll('.read_more').forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const fullContent = this.previousElementSibling;
+
+      // Close all other tabs
+      document.querySelectorAll('.full_content').forEach((content) => {
+        if (content !== fullContent) {
+          content.classList.add('h-0');
+          content.nextElementSibling.textContent = 'Read more';
+        }
+      });
+
+      // Toggle the current tab
+      if (fullContent.classList.contains('h-0')) {
+        fullContent.classList.remove('h-0');
+        this.textContent = 'Read less';
+      } else {
+        fullContent.classList.add('h-0');
+        this.textContent = 'Read more';
+      }
+    });
+  });
