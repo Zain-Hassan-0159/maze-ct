@@ -74,3 +74,34 @@ const swiper = new Swiper('.swiper', {
       }
     });
   });
+
+// Set a variable for our button element.
+const scrollToTopButton = document.getElementById('js-top');
+
+// Function to show or hide the button based on scroll position
+const scrollFunc = () => {
+  // Get the current scroll value
+  let y = window.scrollY;
+  
+  // If the scroll value is greater than 200px, show the button
+  if (y > 200) {
+    scrollToTopButton.className = "top-link show";
+  } else {
+    scrollToTopButton.className = "top-link hide";
+  }
+};
+
+// Add the scroll event listener
+window.addEventListener("scroll", scrollFunc);
+
+// Function to scroll directly to the top
+const scrollToTop = () => {
+  // Use window.scrollTo with (0, 0) to jump to the top
+  window.scrollTo(0, 0);
+};
+
+// When the button is clicked, run the scrollToTop function
+scrollToTopButton.onclick = function(e) {
+  e.preventDefault();
+  scrollToTop();
+};

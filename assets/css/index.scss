@@ -32,6 +32,74 @@ html {
     font-family: 'Graphik Trial';
 }
 
+$bg: #10111F;
+$barsize: 15px;
+
+.hr {
+    
+    width: 100%;
+    height: 1px;
+    display: block;
+    position: relative;
+    margin-bottom: 0em;
+    padding: 2em 0;
+
+    &:after,
+    &:before {
+
+        content: "";
+        position: absolute;
+
+        width: 100%;
+        height: 1px;
+        bottom: 50%;
+        left: 0;
+
+    }
+
+    &:before {
+
+        background: linear-gradient( 90deg, $bg 0%, $bg 50%, transparent 50%, transparent 100% );
+        background-size: $barsize;
+        background-position: center;
+        z-index: 1;
+
+    }
+
+    &:after {
+
+        transition: opacity 0.3s ease, animation 0.3s ease;
+
+        background: linear-gradient(
+            to right, 
+            #62efab 5%, 
+            #F2EA7D 15%, 
+            #F2EA7D 25%, 
+            #FF8797 35%, 
+            #FF8797 45%, 
+            #e1a4f4 55%, 
+            #e1a4f4 65%, 
+            #82fff4 75%, 
+            #82fff4 85%, 
+            #62efab 95%);
+
+        background-size: 200%;
+        background-position: 0%;
+        animation: bar 15s linear infinite;
+
+    }
+
+    @keyframes bar {
+
+        0% { background-position: 0%; }
+        100% { background-position: 200%; }
+
+    }
+    
+}
+
+
+
 .container{
     max-width: 1800px;
     margin: auto;
@@ -138,12 +206,7 @@ header{
     right: 0;
     .container{
         display: flex;
-        justify-content: space-between;
-        .middle{
-            img{
-                width: 190px;
-            }
-        }
+        justify-content: flex-end;
 
         .right{
 
@@ -197,12 +260,13 @@ header{
     }
 }
 #hero{
-    background-image: url('../images/hero-bg.png');
+    background-image: url('../images/hero-bg-new.png');
     height: 100vh;
+    background-position: center;
 
     @media(max-width: $mobile){
         height: calc(100vh - 100px);
-        background-image: url('../images/mobilie-home.png');
+        // background-image: url('../images/mobilie-home.png');
     }
 
     .container{
@@ -213,8 +277,28 @@ header{
     }
 
     .text{
-        text-align: right;
-        margin-right: 20px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+        background-color: rgb(255 255 255 / 74%);
+        padding: 30px;
+        border-radius: 30px;
+
+        @media(max-width: $tablet){
+            left: 20px;
+            top: 20px;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 0px;
+        }
+
+        .middle{
+            text-align: center;
+            img{
+                width: 190px;
+            }
+        }
 
         @media(max-width: $tablet){
             margin-right: 0;
@@ -223,11 +307,10 @@ header{
     }
 
     h1{
-        font-size : 40px;
+        font-size : 30px;
         letter-spacing : 0.38px;
-        color : #FAF8F8;
+        color : #255B7C;
         font-weight: 600;
-        margin-bottom: 60px;
 
         @media(max-width: $mobile){
             font-size : 30px;
@@ -244,6 +327,9 @@ header{
     margin-top: 40px;
     .container{
         position: relative;
+    }
+    a.pink_link{
+        text-transform: uppercase;
     }
     .bg{
         position: absolute;
@@ -282,10 +368,10 @@ header{
 
             h2{
                 font-weight: 600;
-                color: #F3F5F5;
+                color: white;
                 text-transform: uppercase;
                 margin-bottom: 15px;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+                // box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
             }
         }
         
@@ -406,7 +492,7 @@ header{
         img{
             max-height: 440px;
             object-fit: contain;
-            width: fit-content;
+            width: 100%;
             @media(max-width: $tablet){
                 max-height: 240px;
                 margin: 20px 0;
@@ -472,8 +558,9 @@ header{
     }
 
     .row.bg_contain{
-        background-position: left;
+        background-position: 103px;
         @media(max-width: $tablet){
+            background-position: left;
             .container{
                 padding: 0;
             }
@@ -491,11 +578,11 @@ header{
 
         p{
             max-width: 800px;
-            background-color: rgba(86, 85, 85, 0.064);
+            background-color: rgb(255 255 255 / 74%);
             padding: 30px;
             border-radius: 30px;
             @media(max-width: $tablet){
-                background-color: rgba(255, 255, 255, 0.649);
+                background-color: rgb(255 255 255 / 74%);
                 border-radius: 0;
             }
 
@@ -547,13 +634,13 @@ header{
         flex-wrap: wrap;
         justify-content: center;
         .user{
+            flex: 1;
             max-width: 295px;
             min-width: 200px;
             transition: all 0.6s linear;
             &:hover img{
                 transform: scaleY(1.01);
                 transform-origin: bottom;
-                object-fit: none;
             }
         }
 
@@ -571,6 +658,9 @@ header{
     img{
         background-color: #F3F5F5;
         transition: all 0.3s ease-in-out;
+        max-height: 350px;
+        height: 100%;
+        object-fit: cover;
 
     }
 
@@ -582,9 +672,10 @@ header{
 #learn_more{
     background-position: center;
     .highlight{
-        background-color: pink;
-        color: #2E537F;
+        background-color: #ffc0cb3b;
+        color: black;
         display: inline-block;
+        padding: 0 10px;
         @media(max-width: $tablet){
             margin-bottom: 40px;
         }
@@ -678,4 +769,47 @@ footer{
             color: #F3F5F5;
         }
     }
+
+    .top-link {
+        display: inline-block;
+        background: linear-gradient(100deg, rgb(236, 78, 85) 3%, rgb(171, 30, 113) 100%);
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 4px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        transition: background-color .3s, 
+        opacity .5s, visibility .5s;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+        padding: 10px;
+
+        @media(max-width: $mobile){
+            width: 35px;
+            height: 35px;
+            padding: 8px;
+        }
+
+        .screen-reader-text{
+            display: none;
+        }
+
+        svg{
+            fill: white;
+        }
+    }
+    
+    .top-link.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    .top-link.hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+
 }
