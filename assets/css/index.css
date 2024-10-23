@@ -257,6 +257,7 @@ header #menu ul a {
 }
 
 #hero {
+  background-image: url("../images/hero-bg-new.png");
   height: 100vh;
   background-position: center;
 }
